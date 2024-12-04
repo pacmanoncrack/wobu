@@ -15,8 +15,8 @@ export default {
       }
     },
     fontFamily: {
-        sans: ['Ubuntu', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'monospace'],
+        sans: ['Merriweather', 'serif'],
+        mono: ['Open Sans', 'serif'],
     },
     colors: {
       white: '#FFF',

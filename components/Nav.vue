@@ -26,7 +26,7 @@
 </script>
 
 <template>
-  <div class="contents">
+  <div class="contents font-mono">
     <div class="w-screen z-10 fixed bg-green/20 transition-all ease-out"
     :class="{
       'visible opacity-100 backdrop-blur-sm': open,
@@ -80,22 +80,19 @@
               :key="item.ID" class="h-12">
 
               <NuxtLink :to="`/${item.object_id}`" 
-                        class="h-full w-full flex justify-center lg:justify-start items-center"
+                        class="h-full w-full flex justify-center lg:justify-start items-center transition-all relative group"
+                        :class="{ 
+                          'translate-x-0 opacity-100': open, 
+                          'translate-x-full opacity-0': !open 
+                        }"
+                        :style="`transition-delay: ${index * 100}ms; transition-duration: ${(index + 1) * 200}ms`"
                         @click="close()">
-                <span v-text="item.title"
-                      class="block text-white font-semibold transition-all ease-out"
-                      :class="{ 
-                        'translate-x-0 opacity-100': open, 
-                        'translate-x-full opacity-0': !open 
-                      }"
-                      :style="`transition-delay: ${index * 100}ms; transition-duration: ${(index + 1) * 200}ms`"></span>
-              </NuxtLink>
+                        
+                <span class="inset-y-0 -inset-x-8 absolute scale-50 transition-all duration-75 ease-out bg-white/10 opacity-0 group-hover:opacity-100 group-hover:scale-100"></span>
 
-              <!-- <a v-text="item.title" 
-                  :href="item.guid"
-                  class="text-white font-medium text-2xl"
-                  @click.prevent="console.info('helo woröd')"
-              ></a> -->
+                <span v-text="item.title"
+                      class="block text-white ease-out font-black"></span>
+              </NuxtLink>
           </li>
         </ul>
 
