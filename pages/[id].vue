@@ -1,6 +1,6 @@
 <script setup lang="ts">
     const route = useRoute()
-    const data = await $fetch(`http://localhost/wobu/wp-json/wp/v2/pages/${route.params.id}?_embed`)
+    const data = await $fetch(`https://www.supervisionscoaching.at/wp-json/wp/v2/pages/${route.params.id}?_embed`)
 
     const image = data._embedded && 'wp:featuredmedia' in data._embedded
         ? data._embedded['wp:featuredmedia'][0].source_url

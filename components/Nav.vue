@@ -1,28 +1,17 @@
 
 <script setup lang="ts">
   const open = useState('open', () => false)
+  //const items = await $fetch('http://www.supervisionscoaching.at/wp-json/custom/menu/2')
+  const menu = await $fetch('https://www.supervisionscoaching.at/wp-json/wp-api-menus/v2/menus/2')
+  const items = menu.items.filter(item => item.object === 'page');
 
-  /* useAsyncData() and $fetch() are auto-imported */
-  // const { data, refresh, pending } = await useFetch('/api/hello')
+  const toggle = () => {
+    open.value = !open.value
+  }
 
-//   const { data } = await useFetch('http://localhost/wobu/wp-json/custom/menu/2')
-//   console.info('response', data);
-
-//   fetch('http://localhost/wobu/wp-json/custom/menu/2')
-//     .then(response => response.json())
-//     .then(data => {
-//       console.info('data', data)
-//     })
-
-    const items = await $fetch('http://localhost/wobu/wp-json/custom/menu/2')
-
-    const toggle = () => {
-      open.value = !open.value
-    }
-
-    const close = () => {
-      open.value = false
-    }
+  const close = () => {
+    open.value = false
+  }
 </script>
 
 <template>
@@ -62,7 +51,7 @@
                         class="h-full w-full flex justify-center lg:justify-start items-center"
                         @click="close()">
                 <span v-text="item.title"
-                      class="block text-white font-semibold transition-all ease-out"
+                      class="block text-white font-black transition-all ease-out"
                       :class="{ 
                         'translate-y-0 opacity-100': open, 
                         'translate-y-[50vh] opacity-0': !open 
